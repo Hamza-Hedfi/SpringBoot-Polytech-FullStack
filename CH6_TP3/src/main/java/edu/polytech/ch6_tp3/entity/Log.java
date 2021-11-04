@@ -25,6 +25,13 @@ public class Log {
         this.user = user;
     }
 
+    public Log(Date date, String content, User user) {
+        this.date = date;
+        this.content = content;
+        this.user = user;
+    }
+
+
     public Integer getId() {
         return id;
     }
@@ -55,5 +62,14 @@ public class Log {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Log{" +
+                "id=" + id +
+                ", date=" + date +
+                ", content='" + content + '\'' +
+                '}';
     }
 }

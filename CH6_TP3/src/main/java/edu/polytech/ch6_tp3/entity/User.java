@@ -2,6 +2,7 @@ package edu.polytech.ch6_tp3.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity()
@@ -13,10 +14,10 @@ public class User {
     private String name;
     private String email;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Log> logs = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
@@ -38,6 +39,11 @@ public class User {
         this.email = email;
     }
 
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
     public User(Integer id, String name, String email, List<Log> logs) {
         this.id = id;
         this.name = name;
@@ -53,15 +59,6 @@ public class User {
         this.groups = groups;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", logs=" + logs +
-                '}';
-    }
 
     public Integer getId() {
         return id;
@@ -101,5 +98,16 @@ public class User {
 
     public void setGroups(List<Groupe> groups) {
         this.groups = groups;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+//                ", logs=" + logs +
+                ", groups=" + this.getGroups() +
+                '}';
     }
 }

@@ -18,6 +18,17 @@ public class Groupe {
     public Groupe() {
     }
 
+    public Groupe(Integer id, String label, Integer capacity) {
+        this.id = id;
+        this.label = label;
+        this.capacity = capacity;
+    }
+
+    public Groupe(String label, Integer capacity) {
+        this.label = label;
+        this.capacity = capacity;
+    }
+
     public Groupe(Integer id, String label, Integer capacity, List<User> users) {
         this.id = id;
         this.label = label;
@@ -55,5 +66,14 @@ public class Groupe {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Groupe{" +
+                "id=" + id +
+                ", label='" + label + '\'' +
+                ", capacity=" + capacity +
+                '}';
     }
 }
